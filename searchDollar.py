@@ -6,19 +6,19 @@ mousePosition.typewrite('cmd')
 
 mousePosition.press('enter')
 
-mousePosition.sleep(1)
+mousePosition.sleep(2)
 
 mousePosition.typewrite('start chrome')
 
 mousePosition.press('enter')
 
-mousePosition.sleep(1)
+mousePosition.sleep(2)
 
 mousePosition.typewrite('https://google.com/')
 
 mousePosition.press('enter')
 
-mousePosition.sleep(2)
+mousePosition.sleep(3)
 
 mousePosition.typewrite('Dolar')
 
