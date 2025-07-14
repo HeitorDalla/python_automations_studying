@@ -1,4 +1,4 @@
-# ⚙️ python_automations_studying
+# ⚙️ Estudando Automações
 
 Este repositório reúne meus estudos e experimentações com **automação usando Python**. O objetivo é automatizar tarefas repetitivas, otimizar fluxos manuais e explorar bibliotecas que facilitam o dia a dia de um programador.
 
