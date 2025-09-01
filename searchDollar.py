@@ -1,25 +1,25 @@
-import pyautogui as mousePosition #biblioteca para controlar as ações com o mouse e teclado
+import pyautogui as pg #biblioteca para controlar as ações com o mouse e teclado
 
-mousePosition.hotkey('win')
+pg.hotkey('win') # abre o menu iniciar
 
-mousePosition.typewrite('cmd')
+pg.typewrite('cmd') # digita 'cmd'
 
-mousePosition.press('enter')
+pg.press('enter') # pressiona enter
 
-mousePosition.sleep(2)
+pg.sleep(2) # # espera por 2 segundos
 
-mousePosition.typewrite('start chrome')
+pg.typewrite('start chrome') # digita o comando para abrir
 
-mousePosition.press('enter')
+pg.press('enter') # pressiona enter
 
-mousePosition.sleep(2)
+pg.sleep(2) # espera 2 segundos
 
-mousePosition.typewrite('https://google.com/')
+pg.typewrite('https://google.com/') # digita dentro do navegador para entrar no google
 
-mousePosition.press('enter')
+pg.press('enter') # pressiona enter
 
-mousePosition.sleep(3)
+pg.sleep(3) # espera dois segundos
 
-mousePosition.typewrite('Dolar')
+pg.typewrite('Dolar') # pesquisa dolar
 
-mousePosition.press('enter')
+pg.press('enter') # pressiona enter

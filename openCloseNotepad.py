@@ -1,22 +1,20 @@
 import pyautogui as pg
 import time
 
-pg.press('win') #mousePosition.hotkey('win', 'r')
+pg.press('win') #mousePosition.hotkey('win', 'r'), vai pressionar a tecla windos
 
-time.sleep(2)
+time.sleep(2) # espera 2 segundos
 
-pg.typewrite('notepad', interval=0.1)
+pg.typewrite('notepad', interval=0.1) # escrever 'notepad'
 
-time.sleep(2)
+time.sleep(2) # esperar 2 segundos
 
-pg.press('enter')
+pg.press('enter') # pressiona enter
 
-time.sleep(3)
+time.sleep(3) # espera 3 segundos
 
-pg.typewrite("Ola, meu nome é Heitor, e estou cursando Analise e Desenvolvimento de Sistemas", interval=0.1)
+pg.typewrite("Ola, meu nome é Heitor, e estou cursando Analise e Desenvolvimento de Sistemas", interval=0.3) # escreve na tela
 
-# pegar a jenela que esta ativa
-fecharJanelaNotepad = pg.getActiveWindow()
+fecharJanelaNotepad = pg.getActiveWindow() # pega a janela que esta ativa
 
-# fecha a janela ativa
-fecharJanelaNotepad.close()
+fecharJanelaNotepad.close() # fecha a janela ativa

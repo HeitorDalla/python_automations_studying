@@ -1,12 +1,13 @@
-import pyautogui as mousePosition
+import pyautogui as pg
 
-print(mousePosition.position())
+print(pg.position()) # printar a posicao
 
-mousePosition.moveTo(x=2930, y=1598)
-mousePosition.click(x=2930, y=1598)
+# move o mouse para as coordenadas
+pg.moveTo(x=2930, y=1598)
+pg.click(x=2930, y=1598)
 
-mousePosition.typewrite("cmd")
+pg.typewrite("cmd") # pesquisar 'cmd'
 
-mousePosition.sleep(2)
+pg.sleep(2) # esperar 2 segundos
 
-mousePosition.click(x=3107, y=744)
+pg.click(x=3107, y=744) # clicar nessas coordenadas
