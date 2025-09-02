@@ -1,5 +1,4 @@
 import pyautogui as pg
-import pyautogui as opcao
 import pygetwindow as gw
 
 def abrir_janela ():
@@ -8,16 +7,28 @@ def abrir_janela ():
 
 def fechar_janela ():
     pegarJanela = gw.getActiveWindow()
-    pegarJanela.close()
+    if pegarJanela is not None:
+        pegarJanela.close()
     return
+
+navegadores = {
+    'Google': 'chrome',
+    'Edge': 'msedge',
+    'Firefox': 'firefox'
+}
+
+mensagens = {
+    'Google': 'Eu abri o Google com automação!!!!',
+    'Edge': 'Eu abri o Edge com automação!!!!',
+    'Firefox': 'Eu abri o Firefox com automação!!!!'
+}
 
 opcao = pg.confirm('Clique na opção desejada: ', buttons=['Google', 'Edge', 'Firefox']) # dar as opcoes
 
-if (opcao == 'Google'):
-    
+if opcao in navegadores:
     abrir_janela()
 
-    pg.write('chrome')
+    pg.write(navegadores[opcao])
 
     pg.sleep(1)
 
@@ -25,38 +36,8 @@ if (opcao == 'Google'):
 
     pg.sleep(2)
 
-    pg.write("Eu abri o google com automacao!!!!", interval=0.1)
+    pg.write(mensagens[opcao], interval=0.1)
 
     pg.sleep(1)
-
-    fechar_janela()
-
-elif (opcao == 'Edge'):
-    abrir_janela()
-
-    pg.write('msedge')
-
-    pg.sleep(1)
-
-    pg.press('enter')
-
-    pg.sleep(2)
-
-    pg.write("Eu abri o edge com automacao!!!!", interval=0.1)
-
-    fechar_janela()
-
-else:
-    abrir_janela()
-
-    pg.write('firefox')
-
-    pg.sleep(1)
-
-    pg.press('enter')
-
-    pg.sleep(2)
-
-    pg.write("Eu abri o firefox com automacao!!!!", interval=0.1)
 
     fechar_janela()
