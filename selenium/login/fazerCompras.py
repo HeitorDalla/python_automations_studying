@@ -134,12 +134,12 @@ for item, valor in itens.items():
     valor_texto = str(valor)
 
     # Escreve o nome do item e o valor em uma nova linha
-    pg.write(f'{item} - {valor_texto}')
+    pg.write(f'{item} - {valor_texto}', interval=0.05)
 
     # Pressionar o enter para pular um linha
     pg.press('enter')
 
     # Tempo para o computador processar as informacoes
-    time.sleep(2)
+    time.sleep(0.5)
 
 driver.quit()
