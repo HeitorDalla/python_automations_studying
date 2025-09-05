@@ -1,6 +1,3 @@
-# Objetivo: entrar no site com duas contas, ar
-
-
 # Para trabalhar com as paginas web
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys
@@ -12,38 +9,40 @@ from webdriver_manager.chrome import ChromeDriverManager
 # Usando o 'By' para trabalhar com atualizações mais recentes
 from selenium.webdriver.common.by import By
 
+# Importações para as esperas explícitas
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 # Usando o pyautogui para burlar a seguranca da senha e salvar as informacoes
 import pyautogui as pg
 
 import time
 
-service = Service(ChromeDriverManager().install())
+# Função para pegar o 'driver'
+def get_driver():
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
 
-driver = webdriver.Chrome(service=service)
+    # Abrir o site
+    driver.get('https://www.saucedemo.com/?utm_source=chatgpt.com')
 
-# Abrir o site
-driver.get('https://www.saucedemo.com/?utm_source=chatgpt.com')
+    return driver
 
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+# Instanciando a função para pegar o 'driver'
+driver = get_driver()
 
-# Pesquisando pelos elementos
-username = driver.find_element(By.NAME, 'user-name')
-password = driver.find_element(By.NAME, 'password')
+# Criar uma instância de espera explícita
+wait = WebDriverWait(driver, 10) # espera por até 10 segundos
 
-# Escrevendo as informacoes
-username.send_keys('standard_user')
-password.send_keys('secret_sauce')
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+# Pesquisando e escrevendo nos elementos
+wait.until(EC.visibility_of_element_located((By.NAME, 'user-name'))).send_keys('standard_user')
+wait.until(EC.visibility_of_element_located((By.NAME, 'password'))).send_keys('secret_sauce')
 
 # Apertando ENTER para entrar no site
-button_enter = driver.find_element(By.NAME, 'login-button')
-button_enter.click()
+wait.until(EC.element_to_be_clickable((By.NAME, 'login-button'))).click()
 
 # Tempo para o computador processar as informacoes
-time.sleep(1)
+time.sleep(2)
 
 # Identificar o botao e aperta-lo
 x = 1063
@@ -54,58 +53,37 @@ pg.click(x, y)
 # Tempo para o computador processar as informacoes
 time.sleep(2)
 
-# Adicionar valores na sacola
-compra1 = driver.find_element(By.NAME, 'add-to-cart-sauce-labs-backpack')
-compra1.click()
-compra2 = driver.find_element(By.NAME, 'add-to-cart-sauce-labs-bike-light')
-compra2.click()
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+# Adicionar itens na sacola
+wait.until(EC.visibility_of_element_located((By.NAME, 'add-to-cart-sauce-labs-backpack'))).click()
+wait.until(EC.visibility_of_element_located((By.NAME, 'add-to-cart-sauce-labs-bike-light'))).click()
 
 # Clicar na sacola
-sacola = driver.find_element(By.XPATH, '//*[@id="shopping_cart_container"]/a')
-sacola.click()
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="shopping_cart_container"]/a'))).click()
 
 # Encontrar o botao de checkout
-checkout = driver.find_element(By.NAME, 'checkout')
-checkout.click()
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+wait.until(EC.visibility_of_element_located((By.NAME, 'checkout'))).click()
 
 # Preenchendo formulario
-first_name = driver.find_element(By.NAME, 'firstName').send_keys('Heitor')
-last_name = driver.find_element(By.NAME, 'lastName').send_keys('Villa')
-code_postal = driver.find_element(By.NAME, 'postalCode').send_keys('email')
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+wait.until(EC.visibility_of_element_located((By.NAME, 'firstName'))).send_keys('Heitor')
+wait.until(EC.visibility_of_element_located((By.NAME, 'lastName'))).send_keys('Villa')
+wait.until(EC.visibility_of_element_located((By.NAME, 'postalCode'))).send_keys('email')
 
 # Clicando em continuar para finalizar a compra
-continuar = driver.find_element(By.NAME, 'continue')
-continuar.click()
-
-# Tempo para o computador processar as informacoes
-time.sleep(2)
+wait.until(EC.visibility_of_element_located((By.NAME, 'continue'))).click()
 
 # Pegando todas as informacoes da compra
 itens = {}
 
-item1 = driver.find_element(By.ID, 'item_4_title_link').text
-valor1 = driver.find_element(By.XPATH, '//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div').text.replace('$', '')
-item2 = driver.find_element(By.ID, 'item_0_title_link').text
-valor2 = driver.find_element(By.XPATH, '//*[@id="checkout_summary_container"]/div/div[1]/div[4]/div[2]/div[2]/div').text.replace('$', '')
+item1 = wait.until(EC.visibility_of_element_located((By.ID, 'item_4_title_link'))).text
+valor1 = wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div'))).text.replace('$', '')
+item2 = wait.until(EC.visibility_of_element_located((By.ID, 'item_0_title_link'))).text
+valor2 = wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="checkout_summary_container"]/div/div[1]/div[4]/div[2]/div[2]/div'))).text.replace('$', '')
 
 itens[item1] = valor1
 itens[item2] = valor2
 
 # Clicando no botao de finalizar o pedido
-finish = driver.find_element(By.NAME, 'finish')
-finish.click()
+wait.until(EC.visibility_of_element_located((By.NAME, 'finish'))).click()
 
 
 # Salvar as informacoes dentro do notepad
@@ -114,19 +92,19 @@ finish.click()
 pg.press('win')
 
 # Tempo para o computador processar as informacoes
-time.sleep(2)
+time.sleep(1)
 
 # Digital notepad no executar do windows
 pg.write("notepad", interval=0.1)
 
 # Tempo para o computador processar as informacoes
-time.sleep(2)
+time.sleep(1)
 
 # Pressionar enter para prosseguir
 pg.press('enter')
 
 # Tempo para o computador processar as informacoes
-time.sleep(2)
+time.sleep(1)
 
 # Escrever a compra realizada
 for item, valor in itens.items():
