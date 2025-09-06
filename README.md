@@ -22,7 +22,7 @@ Este repositório reúne meus estudos e experimentações com **automação usan
 - Pandas, OpenPyXL, PyPDF2
 - Selenium / Playwright
 - Requests / BeautifulSoup
-- smtplib / email / schedule / datetime
+- smtplib / email / schedule / datetime / time
 - PyAutoGUI / pyperclip
 
 ---
@@ -43,7 +43,7 @@ venv\Scripts\activate     # Windows
 
 3. Instale as dependências:
 ```bash
-pip install pyautogui time
+pip install requirements.txt
 ```
 
 ---
