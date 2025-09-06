@@ -1,35 +1,39 @@
 # Importando bibliotecas necessárias
-import http.client # fornece a funcionalidade de cliente http para python, permitindo fazer requisições a servidore web
-import json # fornece métodos para trabalhar com dados no formato json
+import requests
 
 # Função para consultar uma API do VIADEP para obter informações sobre um determinado CEP
 def obter_endereco_por_cep (cep):
-    # Cria a conexão HTTPS com o servidor 'viacep.com.br'
-    conexao = http.client.HTTPConnection('viacep.com.br')
+    # Validação inicial do CEP
+    if not isinstance(cep, str) or not cep.isdigit() or len(cep) != 8:
+        return "Erro: O CEP deve ser uma string de 8 dígitos."
 
-    # Envia uma requisição GET ao servidor ViaCEP
-    conexao.request('GET', f"/ws/{cep}/json/")
-   
-    # Armazena a resposta do servidor
-    resposta = conexao.getresponse()
+    # Endpoint
+    url = f"https://viacep.com.br/ws/{cep}/json/"
 
-    # lê o conteúdo completo da resposta (que é enviado pelo servidor em formato de bytes) até que todos os dados sejam recebidos
-    dados = resposta.read()
+    try:
+        # Envia um requisição GET para a 'url', o resultado é armazenado na variável 'response'
+        response = requests.get(url)
 
-    # Decodifica os bytes e o 'loads' converte a string JSON em dicionário python
-    endereco = json.loads(dados.decode("utf-8"))
+        # Verifica o status da requisição GET (se retornar um código de erro, ele vai para o except)
+        response.raise_for_status()
 
-    # Encerra a conexão HTTPS com o servidor
-    conexao.close()
+        # Se a requisição foi um sucesso, ele converte a string JSON em dicionário python
+        dados = response.json()
 
-    # Verifica se esta 'erro' no dicionário
-    if "erro" not in endereco:
-        return endereco
-    else:
-        return "CEP não encontrado!"
+        # Se o CEP não for válido, ele retorna um JSON com a chave 'erro'
+        if 'erro' in dados and dados['erro'] is True:
+            return "CEP não encontrado!"
+        
+        # Se tudo ocorre bem, retorna o dicionário com os dados
+        return dados
+    
+    except requests.exceptions.RequestException as e:
+        return f"Erro de conexão: {e}"
+    except requests.exceptions.JSONDecodeError:
+        return "Erro: A resposta da API não é um JSON válido."
 
 # CEP para exemplo de requisição
-cep_exemplo = '01001000'
+cep_exemplo = '86047725'
 
 # Utiliza a função para obter as informações do CEP
 endereco_resultado = obter_endereco_por_cep(cep_exemplo)
