@@ -2,4 +2,3 @@ pyautogui
 selenium
 webdriver-manager
 Pillow
-pynput
