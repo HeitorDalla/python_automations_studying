@@ -46,6 +46,8 @@ def get_value_cripto (nome_moeda):
             return data
         except requests.exceptions.ConnectionError:
             logging.error("Não foi possível fazer a conexão à API.")
+        except requests.exceptions.JSONDecodeError:
+            return "Erro: A resposta da API não é um JSON válido."
 
 # Moeda de exemplo
 moeda = 'bitcoin'
