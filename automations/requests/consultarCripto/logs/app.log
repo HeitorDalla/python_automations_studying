@@ -1,0 +1,2 @@
+2025-09-07 16:48:28 - app - INFO - Iniciando a busca pelo valor de bitcoin.
+2025-09-07 16:48:29 - app - INFO - Valor obtido com sucesso: {'bitcoin': {'brl': 602039}}
