@@ -3,39 +3,15 @@ from dotenv import load_dotenv
 import requests
 import logging
 
-# Definindo as configurações do loggin
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s-%(name)s-%(levelname)s-%(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.StreamHandler()
-    ]
-)
+# Importando a configuração de logging do arquivo separad
+from log_config import LOGGING_CONFIG
 
-# Criando logger e handler para a requisição
-logger_requisicao = logging.getLogger('requisicao')
-logger_requisicao.setLevel(logging.INFO)
-logger_requisicao.propagate = False # Desativa a propagação para evitar que os logs de requisição
-# sejam duplicados no handler do root logger
+# Aplica a configuração no início do script
+logging.config.dictConfig(LOGGING_CONFIG)
 
-requisicao_handler = logging.FileHandler('requisicao.log')
-requisicao_handler.setLevel(logging.INFO)
-
-logger_requisicao.addHandler(requisicao_handler)
-
-# Criando logger e handler para o app
+# Pegar os loggers que foram configurados
 logger_app = logging.getLogger('app')
-logger_app.setLevel(logging.DEBUG)
-logger_app.propagate = False # Desativa a propagação para evitar que os logs de requisição
-# sejam duplicados no handler do root logger
-
-app_handler = logging.FileHandler('app.log')
-app_handler.setLevel(logging.DEBUG)
-
-logger_app.addHandler(app_handler)
-
-# Criando 
+logger_requisicao = logging.getLogger('requisicao')
 
 # Função para requisição à API
 def get_value_cripto (nome_moeda):
