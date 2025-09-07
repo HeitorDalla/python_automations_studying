@@ -1,7 +1,8 @@
 # Verificar se a professora é 'Carolina' e exibir apenas os alunos dela
 
-# Abrir o arquivo de text
+# Abrir o arquivo de texto
 arquivo = open('C:\\Users\Admin\\Desktop\\automations\\python_automations_studying\\automations\\notepad\\Alunos.txt')
+arquivo = open('C:\\Users\Admin\\Desktop\\automations\\python_automations_studying\\automations\\notepad\\Professora.txt')
 
 linhas = arquivo.readlines()
 
