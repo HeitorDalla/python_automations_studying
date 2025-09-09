@@ -1,5 +1,0 @@
-pyautogui
-selenium
-webdriver-manager
-Pillow
-python-dotenv
