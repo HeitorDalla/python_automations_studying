@@ -22,12 +22,12 @@ O objetivo é **automatizar tarefas repetitivas**, **otimizar fluxos manuais** e
 |----------------------------|--------------------------------------|
 | **Linguagem**             | Python `3.13+`                      |
 | **Gerenciador**           | Poetry *(dependências e ambiente)*  |
-| **Sistema de Arquivos**   | `os`, `shutil`, `pathlib`           |
+| **Sistema de Arquivos**   | `os`                                |
 | **Manipulação de Dados**  | `pandas`, `openpyxl`, `PyPDF2`      |
-| **Automação Web**         | `selenium`, `playwright`            |
-| **APIs & Web Scraping**   | `requests`, `beautifulsoup4`        |
+| **Automação Web**         | `selenium`                          |
+| **APIs & Web Scraping**   | `requests`                          |
 | **E-mails & Agendamentos**| `smtplib`, `email`, `schedule`      |
-| **Automação de Interface**| `pyautogui`, `pyperclip`            |
+| **Automação de Interface**| `pyautogui`                         |
 | **Datas & Horários**      | `datetime`, `time`                  |
 
 ---
